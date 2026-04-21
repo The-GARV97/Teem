@@ -243,19 +243,19 @@ Implement the org-scoped Employee Management module: three new database tables (
   - Run `php artisan migrate` to apply all three new migrations
   - Ensure all existing tests still pass, ask the user if questions arise.
 
-- [ ] 15. Write PHPUnit feature tests
-  - [-] 15.1 Create `tests/Feature/DepartmentControllerTest.php`
+- [x] 15. Write PHPUnit feature tests
+  - [x] 15.1 Create `tests/Feature/DepartmentControllerTest.php`
     - Test store/update/destroy happy paths with `manage-employees` user
     - Test 403 for user without `manage-employees`
     - Test validation error on duplicate name within org
     - Test error redirect when deleting department with assigned employees
     - _Requirements: 1.3, 1.4, 5.1, 5.2, 5.3, 5.4, 5.5_
 
-  - [~] 15.2 Create `tests/Feature/DesignationControllerTest.php`
+  - [x] 15.2 Create `tests/Feature/DesignationControllerTest.php`
     - Same structure as `DepartmentControllerTest` for designations
     - _Requirements: 2.3, 2.4, 6.1, 6.2, 6.3, 6.4, 6.5_
 
-  - [~] 15.3 Create `tests/Feature/EmployeeControllerTest.php`
+  - [x] 15.3 Create `tests/Feature/EmployeeControllerTest.php`
     - Test index with each filter (search, department_id, status) returns only matching employees
     - Test show returns correct employee data
     - Test store creates employee with correct `org_id`
@@ -265,11 +265,11 @@ Implement the org-scoped Employee Management module: three new database tables (
     - Test 404 for cross-org employee access
     - _Requirements: 4.2, 7.1, 8.1, 8.2, 8.3, 8.4, 9.1, 10.1, 11.1, 11.2_
 
-  - [~] 15.4 Create `tests/Feature/EmployeeObserverTest.php`
+  - [x] 15.4 Create `tests/Feature/EmployeeObserverTest.php`
     - Assert that soft-deleting a manager sets `manager_id` to `null` on all subordinates
     - _Requirements: 11.4_
 
-  - [~] 15.5 Create `tests/Unit/EmployeePolicyTest.php`
+  - [x] 15.5 Create `tests/Unit/EmployeePolicyTest.php`
     - Assert `create`/`update`/`delete` return `true` for user with `manage-employees` in same org
     - Assert `false` for user without permission
     - Assert `false` for user with permission but different `org_id`
@@ -310,7 +310,7 @@ Implement the org-scoped Employee Management module: three new database tables (
     - **Property 17**: for `status='active'` assert badge HTML contains `green`; for `status='inactive'` assert badge HTML contains `red`
     - _Requirements: 8.6, 9.4, 12.3, 13.3, 14.4, 14.5, 14.6_
 
-- [~] 17. Final checkpoint — Ensure all tests pass
+- [x] 17. Final checkpoint — Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes

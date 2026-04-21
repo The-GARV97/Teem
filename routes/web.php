@@ -4,6 +4,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LeaveRequestController;
+use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,10 +39,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
         Route::resource('departments', DepartmentController::class)->except(['show']);
         Route::resource('designations', DesignationController::class)->except(['show']);
+
+        // Leave Types (Admin only)
+        Route::resource('leave-types', LeaveTypeController::class)->except(['show']);
     });
 
     // Public show route — defined after /create to avoid wildcard conflict
     Route::get('/employees/{employee}', [EmployeeController::class, 'show'])->name('employees.show');
+
+    // Leave Requests
+    Route::get('/leave-requests', [LeaveRequestController::class, 'index'])->name('leave-requests.index');
+    Route::middleware('permission:apply-leave')->group(function () {
+        Route::get('/leave-requests/create', [LeaveRequestController::class, 'create'])->name('leave-requests.create');
+        Route::post('/leave-requests', [LeaveRequestController::class, 'store'])->name('leave-requests.store');
+    });
+    Route::middleware('permission:approve-leave')->group(function () {
+        Route::post('/leave-requests/{leaveRequest}/approve', [LeaveRequestController::class, 'approve'])->name('leave-requests.approve');
+        Route::post('/leave-requests/{leaveRequest}/reject', [LeaveRequestController::class, 'reject'])->name('leave-requests.reject');
+    });
 });
 
 require __DIR__.'/auth.php';

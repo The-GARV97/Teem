@@ -192,7 +192,9 @@ class EmployeeControllerTest extends TestCase
             'status'         => 'active',
         ]);
 
-        $response->assertStatus(403);
+        // The permission middleware redirects unauthorized users to /dashboard
+        $response->assertRedirect('/dashboard');
+        $this->assertDatabaseMissing('employees', ['email' => 'unauth@example.com']);
     }
 
     public function test_cross_org_employee_returns_404(): void

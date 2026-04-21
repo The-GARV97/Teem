@@ -101,7 +101,9 @@ class DesignationControllerTest extends TestCase
         $response = $this->actingAs($user)
             ->post(route('designations.store'), ['name' => 'Analyst']);
 
-        $response->assertStatus(403);
+        // The permission middleware redirects unauthorized users to /dashboard
+        $response->assertRedirect('/dashboard');
+        $this->assertDatabaseMissing('designations', ['name' => 'Analyst']);
     }
 
     public function test_duplicate_designation_name_in_same_org_fails_validation(): void

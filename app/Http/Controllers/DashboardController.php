@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
+use App\Models\LeaveRequest;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -27,7 +29,15 @@ class DashboardController extends Controller
 
     public function employee(): View
     {
-        return view('employee.dashboard');
+        $employee = Employee::where('user_id', auth()->id())->firstOrFail();
+
+        $counts = LeaveRequest::withoutGlobalScopes()
+            ->where('employee_id', $employee->id)
+            ->selectRaw('status, count(*) as total')
+            ->groupBy('status')
+            ->pluck('total', 'status');
+
+        return view('employee.dashboard', compact('counts'));
     }
 
     public function manager(): View

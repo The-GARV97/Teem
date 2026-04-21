@@ -101,7 +101,9 @@ class DepartmentControllerTest extends TestCase
         $response = $this->actingAs($user)
             ->post(route('departments.store'), ['name' => 'Marketing']);
 
-        $response->assertStatus(403);
+        // The permission middleware redirects unauthorized users to /dashboard
+        $response->assertRedirect('/dashboard');
+        $this->assertDatabaseMissing('departments', ['name' => 'Marketing']);
     }
 
     public function test_duplicate_department_name_in_same_org_fails_validation(): void
