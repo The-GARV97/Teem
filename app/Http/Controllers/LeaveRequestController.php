@@ -78,7 +78,7 @@ class LeaveRequestController extends Controller
             ]);
         }
 
-        LeaveRequest::create([
+        $leaveRequest = LeaveRequest::create([
             'org_id'        => $user->org_id,
             'employee_id'   => $employee->id,
             'leave_type_id' => $leaveType->id,
@@ -88,6 +88,11 @@ class LeaveRequestController extends Controller
             'reason'        => $validated['reason'],
             'status'        => 'pending',
         ]);
+
+        $reviewers = \App\Models\User::where('org_id', $user->org_id)
+            ->whereHas('roles', fn($q) => $q->whereIn('name', ['Admin', 'Manager', 'SuperAdmin']))
+            ->get();
+        \Illuminate\Support\Facades\Notification::send($reviewers, new \App\Notifications\LeaveRequestSubmitted($leaveRequest->load('employee', 'leaveType')));
 
         return redirect()->route('leave-requests.index')->with('success', 'Leave request submitted.');
     }
@@ -113,6 +118,11 @@ class LeaveRequestController extends Controller
             $leaveRequest->total_days
         );
 
+        $employeeUser = $leaveRequest->employee->user;
+        if ($employeeUser) {
+            $employeeUser->notify(new \App\Notifications\LeaveRequestReviewed($leaveRequest, 'approved'));
+        }
+
         return back()->with('success', 'Leave request approved.');
     }
 
@@ -128,6 +138,11 @@ class LeaveRequestController extends Controller
             'reviewed_at'      => now(),
             'rejection_reason' => $request->input('rejection_reason'),
         ]);
+
+        $employeeUser = $leaveRequest->employee->user;
+        if ($employeeUser) {
+            $employeeUser->notify(new \App\Notifications\LeaveRequestReviewed($leaveRequest, 'rejected', $request->input('rejection_reason')));
+        }
 
         return back()->with('success', 'Leave request rejected.');
     }

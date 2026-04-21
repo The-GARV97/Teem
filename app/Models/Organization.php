@@ -13,6 +13,6 @@ class Organization extends Model
     use HasFactory;
     public function users(): HasMany
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'org_id');
     }
 }
