@@ -16,12 +16,12 @@ class DefaultDataSeeder extends Seeder
     {
         // Create a demo organization
         $org = Organization::firstOrCreate(
-            ['name' => 'WorkForge Demo'],
+            ['name' => 'Teem Demo'],
         );
 
         // Create a demo admin user for this org
         $admin = User::firstOrCreate(
-            ['email' => env('DEMO_ADMIN_EMAIL', 'admin@workforge.com')],
+            ['email' => env('DEMO_ADMIN_EMAIL', 'admin@teem.com')],
             [
                 'name'     => 'Demo Admin',
                 'password' => Hash::make(env('DEMO_ADMIN_PASSWORD', 'password')),

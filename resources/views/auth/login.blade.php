@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Login — {{ config('app.name', 'WorkForge') }}</title>
+    <title>Login — {{ config('app.name', 'Teem') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -21,7 +21,7 @@
                         <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
                     </svg>
                 </div>
-                <span class="text-xl font-bold tracking-tight">WorkForge</span>
+                <span class="text-xl font-bold tracking-tight">Teem</span>
             </div>
         </div>
 
@@ -30,7 +30,7 @@
                 Manage your team,<br>effortlessly.
             </h1>
             <p class="text-indigo-200 text-lg leading-relaxed">
-                WorkForge brings together HR, leave management, and team collaboration in one place — built for modern businesses.
+                Teem brings together HR, leave management, and team collaboration in one place — built for modern businesses.
             </p>
 
             <div class="space-y-4 pt-4">
@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <p class="text-indigo-300 text-sm">© {{ date('Y') }} WorkForge. All rights reserved.</p>
+        <p class="text-indigo-300 text-sm">© {{ date('Y') }} Teem. All rights reserved.</p>
     </div>
 
     {{-- Right Panel --}}
@@ -75,7 +75,7 @@
                         <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
                     </svg>
                 </div>
-                <span class="text-lg font-bold text-gray-900">WorkForge</span>
+                <span class="text-lg font-bold text-gray-900">Teem</span>
             </div>
 
             <div class="mb-8">

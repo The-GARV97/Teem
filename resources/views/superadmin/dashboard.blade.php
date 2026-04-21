@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-indigo-600 leading-tight">Platform Dashboard</h2>
+            <h2 class="font-semibold text-xl text-indigo-600 leading-tight">Platform Dashboard — Teem</h2>
             <span class="text-sm text-gray-500">{{ now()->format('l, F j, Y') }}</span>
         </div>
     </x-slot>
